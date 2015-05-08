@@ -44,7 +44,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/omxloaders:system/etc/omxloaders \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
@@ -192,6 +191,11 @@ include vendor/samsung/u8500-common/vendor-common.mk
 
 # For better compatibility with ROMs (like Slim, PAC)
 $(call inherit-product, vendor/samsung/u8500-common/codina/codina-vendor-blobs.mk)
+
+ifneq ($(TARGET_SCREEN_HEIGHT),800)
+# Call omni_codina.mk because somehow it's not being called!
+$(call inherit-product, device/samsung/codina/omni_codina.mk)
+endif
 
 # Init files
 PRODUCT_COPY_FILES += \
