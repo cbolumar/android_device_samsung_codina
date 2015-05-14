@@ -24,6 +24,12 @@ ro.device.rear_cam=5 Mpix (2592x1944)
 ro.device.front_cam=VGA (640x480)
 ro.device.screen_res=3,8' 800x480 pixels ( ~246 ppi)
 
+# NTP sync
+ro.config.sync=yes
+ro.config.ntp.server_poll=86400000
+ro.config.ntp.clock_sync=1800000
+ro.config.ntp.sync_mode=3
+
 # Art tweaks
 dalvik.vm.image-dex2oat-filter=speed
 dalvik.vm.dex2oat-filter=interpret-only
