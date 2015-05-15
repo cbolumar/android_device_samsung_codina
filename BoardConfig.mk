@@ -59,6 +59,7 @@ TARGET_CPU_ABI2 := armeabi
 ARCH_ARM_HAVE_NEON := true
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
+TARGET_EXTERNAL_APPS = sdcard1
 
 # Kernel
 BOARD_KERNEL_PAGESIZE := 4096
