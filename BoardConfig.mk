@@ -80,6 +80,7 @@ BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+BOARD_NO_WIFI_HAL := true
 
 ifeq ($(DEVICE_CODINA_ENABLE_SDBOOT),true)
 WIFI_DRIVER_MODULE_PATH          := "/lib/modules/dhd.ko"
