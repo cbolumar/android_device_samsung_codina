@@ -4,12 +4,18 @@ pre_clean() {
     tmp=$PWD
     cd $1
 
-    # get rid of any uncommitted or unstaged changes
-    git reset --hard
-    git clean -fd
-    git am --abort
+    git reset --hard > /dev/null
+    git clean -fd > /dev/null
+    git am  --abort > /dev/null
 
     cd $tmp
+
+    repo sync -fl $1
+}
+
+apply() {
+    patch -p1 -i $1
+    git commit -am "$1"
 }
 
 apply_all() {
@@ -18,13 +24,19 @@ apply_all() {
 
     for i in $( ls *.patch )
     do
-        git am $i
+        echo "applying "$i" for "$1
+        apply $i
     done
  
     cd $tmp
 }
 
 # pre clean 
+
+echo "get rid of any uncommitted or unstaged changes"
+
+patches=$PWD
+cd $LOCAL_PATH
 
 pre_clean bionic
 pre_clean build
@@ -39,6 +51,7 @@ pre_clean packages/services/Telecomm
 pre_clean packages/services/Telephony
 pre_clean system/core
 
+cd $patches
 
 # copy patches
 cp -r * $LOCAL_PATH 
@@ -53,8 +66,6 @@ apply_all frameworks/base/
 apply_all frameworks/native/
 apply_all frameworks/opt/net/wifi/
 apply_all frameworks/opt/telephony/
-apply_all packages/apps/Bluetooth/ 
-apply_all packages/apps/Settings/
 apply_all packages/services/Telecomm
 apply_all packages/services/Telephony
 apply_all system/core
