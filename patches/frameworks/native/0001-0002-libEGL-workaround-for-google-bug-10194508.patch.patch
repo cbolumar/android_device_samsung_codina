@@ -1,9 +1,10 @@
-From a86df3188455ddb9fdd5d3e18ff8e9bdf8093c20 Mon Sep 17 00:00:00 2001
+From e60d718fb2fb9f1e8751d6bffb014a1931cc8e3d Mon Sep 17 00:00:00 2001
 From: Shilin Victor <chrono.monochrome@gmail.com>
-Date: Mon, 11 May 2015 23:07:54 +0300
-Subject: [PATCH 5/5] libEGL: workaround for google bug 10194508
+Date: Sun, 24 May 2015 21:08:18 +0300
+Subject: [PATCH 1/4] 
+ 0002-libEGL-workaround-for-google-bug-10194508.patch.patch
 
-Change-Id: Ib55ee6cc0659fa7474cc3bc02f3a52affda66e8a
+Change-Id: I888e824bcba6400d8766bcfcb21057d1cc92a0d3
 ---
  opengl/libs/Android.mk | 3 +++
  1 file changed, 3 insertions(+)
