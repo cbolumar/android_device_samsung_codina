@@ -1,4 +1,3 @@
-import /device_tunables.rc
 import /init.u8500.usb.rc
 
 on init
