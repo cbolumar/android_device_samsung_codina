@@ -1,0 +1,26 @@
+From 7147d45bcf8a9bcc49d6e24267776b901a345be2 Mon Sep 17 00:00:00 2001
+From: Shilin Victor <chrono.monochrome@gmail.com>
+Date: Fri, 29 May 2015 23:06:48 +0300
+Subject: [PATCH 1/2] Fix derp
+
+Change-Id: Ib5154104aa86fb16c04718690380b2c6da984a05
+---
+ services/audioflinger/PlaybackTracks.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/services/audioflinger/PlaybackTracks.h b/services/audioflinger/PlaybackTracks.h
+index 98d5740..9178a67 100644
+--- a/services/audioflinger/PlaybackTracks.h
++++ b/services/audioflinger/PlaybackTracks.h
+@@ -55,7 +55,7 @@ public:
+             audio_stream_type_t streamType() const {
+                 return mStreamType;
+             }
+-            bool        isOffloaded() const { return 0; 
++            bool        isOffloaded() const { return 0;} 
+             bool        isDirect() const { return (mFlags & IAudioFlinger::TRACK_DIRECT) != 0; }
+             status_t    setParameters(const String8& keyValuePairs);
+             status_t    attachAuxEffect(int EffectId);
+-- 
+1.9.1
+
