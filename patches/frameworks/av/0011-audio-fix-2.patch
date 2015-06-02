@@ -1,0 +1,64 @@
+From a1702e07ef21c40bea9ed5ad607e14cf8f51d6fd Mon Sep 17 00:00:00 2001
+From: Shilin Victor <chrono.monochrome@gmail.com>
+Date: Mon, 25 May 2015 17:53:17 +0300
+Subject: [PATCH 11/12] audio fix[2]
+
+Change-Id: I45ed32f52d1be41e21cf524a848b344691c96739
+
+Conflicts:
+	services/audiopolicy/Android.mk
+---
+ media/libmedia/AudioSystem.cpp  |  2 +-
+ services/audiopolicy/Android.mk | 16 ++++------------
+ 2 files changed, 5 insertions(+), 13 deletions(-)
+
+diff --git a/media/libmedia/AudioSystem.cpp b/media/libmedia/AudioSystem.cpp
+index 9cae21c..a9fa53e 100644
+--- a/media/libmedia/AudioSystem.cpp
++++ b/media/libmedia/AudioSystem.cpp
+@@ -646,7 +646,7 @@ audio_io_handle_t AudioSystem::getOutput(audio_stream_type_t stream,
+ {
+     const sp<IAudioPolicyService>& aps = AudioSystem::get_audio_policy_service();
+     if (aps == 0) return 0;
+-    return aps->getOutput(stream, samplingRate, format, channelMask, flags, offloadInfo);
++    return aps->getOutput(stream, samplingRate, format, channelMask, flags, NULL);
+ }
+ 
+ status_t AudioSystem::getOutputForAttr(const audio_attributes_t *attr,
+diff --git a/services/audiopolicy/Android.mk b/services/audiopolicy/Android.mk
+index 83a8a43..afb9e22 100644
+--- a/services/audiopolicy/Android.mk
++++ b/services/audiopolicy/Android.mk
+@@ -69,6 +69,8 @@ endif
+ 
+ include $(CLEAR_VARS)
+ 
++USE_LEGACY_AUDIO_POLICY:=1
++
+ LOCAL_SRC_FILES:= \
+     AudioPolicyService.cpp \
+     AudioPolicyEffects.cpp
+@@ -100,18 +102,8 @@ LOCAL_SHARED_LIBRARIES := \
+     libhardware_legacy \
+     libserviceutility
+ 
+-ifneq ($(USE_LEGACY_AUDIO_POLICY), 1)
+-LOCAL_SHARED_LIBRARIES += \
+-    libaudiopolicymanager
+-endif
+-
+-ifeq ($(BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB),true)
+-    LOCAL_CFLAGS += -DHAVE_PRE_KITKAT_AUDIO_POLICY_BLOB
+-endif
+-
+-ifeq ($(BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB),true)
+-    LOCAL_CFLAGS += -DHAVE_PRE_KITKAT_AUDIO_BLOB
+-endif
++LOCAL_CFLAGS += -DHAVE_PRE_KITKAT_AUDIO_BLOB
++LOCAL_CFLAGS += -DHAVE_PRE_KITKAT_AUDIO_POLICY_BLOB
+ 
+ LOCAL_STATIC_LIBRARIES := \
+     libmedia_helper
+-- 
+1.9.1
+

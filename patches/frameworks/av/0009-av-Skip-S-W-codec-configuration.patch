@@ -1,9 +1,9 @@
-From 7f3d379b307e51b7861ad833d7218833e6a3518d Mon Sep 17 00:00:00 2001
+From 9a3f4f0d6757b9bc41b599690f0a5fae7be87961 Mon Sep 17 00:00:00 2001
 From: Shilin Victor <chrono.monochrome@gmail.com>
-Date: Sun, 17 May 2015 00:27:19 +0300
-Subject: [PATCH 9/9] 0010-av-Skip-S-W-codec-configuration.patch
+Date: Fri, 29 May 2015 12:27:04 +0300
+Subject: [PATCH 09/12] av-Skip-S-W-codec-configuration
 
-Change-Id: I38e714f27160efc9d511d7c4d7b879531dc1f620
+Change-Id: Icf0f697735a378f39d2bd92332c3f5e8668a3197
 ---
  media/libstagefright/ACodec.cpp | 8 ++++++++
  1 file changed, 8 insertions(+)

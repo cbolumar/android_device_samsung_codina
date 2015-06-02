@@ -1,0 +1,72 @@
+From 75f20f0e8d4ca624707180e717736067bebd6b14 Mon Sep 17 00:00:00 2001
+From: Shilin Victor <chrono.monochrome@gmail.com>
+Date: Fri, 29 May 2015 12:15:23 +0300
+Subject: [PATCH 12/12] 0012-0013-av-Support-for-HOTWORD-OK-Google.patch.patch
+
+Change-Id: I88abb651a2db379d3e3440d50eb781366f95d83c
+
+Conflicts:
+	services/audioflinger/PlaybackTracks.h
+---
+ services/audioflinger/PlaybackTracks.h                  | 2 +-
+ services/audiopolicy/AudioPolicyClientImplLegacy.cpp    | 6 ------
+ services/audiopolicy/AudioPolicyInterfaceImplLegacy.cpp | 6 ++++++
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/services/audioflinger/PlaybackTracks.h b/services/audioflinger/PlaybackTracks.h
+index 98d5740..0930361 100644
+--- a/services/audioflinger/PlaybackTracks.h
++++ b/services/audioflinger/PlaybackTracks.h
+@@ -55,7 +55,7 @@ public:
+             audio_stream_type_t streamType() const {
+                 return mStreamType;
+             }
+-            bool        isOffloaded() const { return 0; 
++            bool        isOffloaded() const { return 0; }
+             bool        isDirect() const { return (mFlags & IAudioFlinger::TRACK_DIRECT) != 0; }
+             status_t    setParameters(const String8& keyValuePairs);
+             status_t    attachAuxEffect(int EffectId);
+diff --git a/services/audiopolicy/AudioPolicyClientImplLegacy.cpp b/services/audiopolicy/AudioPolicyClientImplLegacy.cpp
+index 86f1070..c32e7af 100644
+--- a/services/audiopolicy/AudioPolicyClientImplLegacy.cpp
++++ b/services/audiopolicy/AudioPolicyClientImplLegacy.cpp
+@@ -85,9 +85,6 @@ static audio_io_handle_t open_output(audio_module_handle_t module,
+     config.sample_rate = *pSamplingRate;
+     config.format = *pFormat;
+     config.channel_mask = *pChannelMask;
+-    if (offloadInfo != NULL) {
+-        config.offload_info = *offloadInfo;
+-    }
+     audio_io_handle_t output = AUDIO_IO_HANDLE_NONE;
+     status_t status = af->openOutput(module, &output, &config, pDevices,
+                                      String8(""), pLatencyMs, flags);
+@@ -95,9 +92,6 @@ static audio_io_handle_t open_output(audio_module_handle_t module,
+         *pSamplingRate = config.sample_rate;
+         *pFormat = config.format;
+         *pChannelMask = config.channel_mask;
+-        if (offloadInfo != NULL) {
+-            *((audio_offload_info_t *)offloadInfo) = config.offload_info;
+-        }
+     }
+     return output;
+ }
+diff --git a/services/audiopolicy/AudioPolicyInterfaceImplLegacy.cpp b/services/audiopolicy/AudioPolicyInterfaceImplLegacy.cpp
+index 3475c3d..1dd0e28 100644
+--- a/services/audiopolicy/AudioPolicyInterfaceImplLegacy.cpp
++++ b/services/audiopolicy/AudioPolicyInterfaceImplLegacy.cpp
+@@ -321,6 +321,12 @@ void AudioPolicyService::releaseInput(audio_io_handle_t input,
+         return;
+     }
+ 
++#ifdef HAVE_PRE_KITKAT_AUDIO_BLOB
++    if (inputSource == AUDIO_SOURCE_HOTWORD) {
++        inputSource = AUDIO_SOURCE_VOICE_RECOGNITION;
++    }
++#endif
++
+     sp<AudioPolicyEffects>audioPolicyEffects;
+     {
+         Mutex::Autolock _l(mLock);
+-- 
+1.9.1
+

@@ -1,9 +1,9 @@
-From 02538c2e7dd624ca39f6b583432b1e99cda87613 Mon Sep 17 00:00:00 2001
+From 0447f045203caaa20d0583980ca3bfac8f9263e5 Mon Sep 17 00:00:00 2001
 From: Shilin Victor <chrono.monochrome@gmail.com>
-Date: Sun, 17 May 2015 00:26:50 +0300
-Subject: [PATCH 6/9] 0007-Fix-in-call-audio.patch
+Date: Fri, 29 May 2015 12:24:54 +0300
+Subject: [PATCH 07/12] Fix-in-call-audio.patch
 
-Change-Id: Ic6e402e6078470a05c7cce1950e21b57d5c15023
+Change-Id: Id7160518b654bdd33b7b08d5689fc306766c682b
 ---
  services/audioflinger/AudioFlinger.cpp | 4 ++++
  1 file changed, 4 insertions(+)

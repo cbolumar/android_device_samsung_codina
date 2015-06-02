@@ -1,7 +1,7 @@
-From fce06b2d550393c9641f387a07a36d955a88c62e Mon Sep 17 00:00:00 2001
+From 4b353b98802eeaf83fa0c192931e2fc02ec94c10 Mon Sep 17 00:00:00 2001
 From: Shilin Victor <chrono.monochrome@gmail.com>
 Date: Sun, 3 May 2015 22:41:32 +0300
-Subject: [PATCH 2/9] frameworks-av_001-AV-fix.patch
+Subject: [PATCH 01/12] frameworks-av_001-AV-fix.patch
 
 Change-Id: I9bfabcc61928f345ce947f7b04537be1d4bc26a2
 ---
