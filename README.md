@@ -1,7 +1,4 @@
-android_device_samsung_janice
+android_device_samsung_codina
 =============================
 
-CyanogenMod 11 Device Tree for Samsung Galaxy S Advance (GT-I9070)
-
-Supported variants:
-  - GT-I9070 (INTL)
+Vanir kk44 Device Tree for Samsung Galaxy Ace 2 (GT-I8160)
