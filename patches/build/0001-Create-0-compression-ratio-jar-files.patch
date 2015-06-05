@@ -1,28 +1,26 @@
-From 9a8b391bbd12cd8fd2355c36f27e46413569fe7f Mon Sep 17 00:00:00 2001
+From 6293034787ac99ab3c3e11e7c2dc31b16c71481a Mon Sep 17 00:00:00 2001
 From: Shilin Victor <chrono.monochrome@gmail.com>
-Date: Wed, 3 Jun 2015 04:14:49 +0300
+Date: Fri, 5 Jun 2015 05:11:05 +0300
 Subject: [PATCH] Create-0-compression-ratio-jar-files
 
-thanks to Sergeyl
-
-Change-Id: I02c4f29bf389ecd71bf4ad898ddc45c70ca55f59
+Change-Id: I55f15cf8ad5ddbca913ef299b8a165575dfdf0eb
 ---
  core/definitions.mk | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/core/definitions.mk b/core/definitions.mk
-index 757b24a..528914b 100644
+index f0bd6e0..956b534 100644
 --- a/core/definitions.mk
 +++ b/core/definitions.mk
-@@ -1791,7 +1791,7 @@ endef
- 
+@@ -1680,7 +1680,7 @@ endef
  #TODO: update the manifest to point to the dex file
  define add-dex-to-package
--$(hide) zip -qj $@ $(dir $(PRIVATE_DEX_FILE))classes*.dex
-+$(hide) zip -0qj $@ $(dir $(PRIVATE_DEX_FILE))classes*.dex
- endef
- 
- # Add java resources added by the current module.
+ $(if $(filter classes.dex,$(notdir $(PRIVATE_DEX_FILE))),\
+-$(hide) zip -qj $@ $(PRIVATE_DEX_FILE),\
++$(hide) zip -0qj $@ $(PRIVATE_DEX_FILE),\
+ $(hide) _adtp_classes_dex=$(dir $(PRIVATE_DEX_FILE))classes.dex; \
+ cp $(PRIVATE_DEX_FILE) $$_adtp_classes_dex && \
+ zip -qj $@ $$_adtp_classes_dex && rm -f $$_adtp_classes_dex)
 -- 
 1.9.1
 
