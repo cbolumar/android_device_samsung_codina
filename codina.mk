@@ -22,9 +22,15 @@ DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
-# NovaThor Settings
+
+# Optional CM packages
 PRODUCT_PACKAGES += \
-    NovaThorSettings
+    CMFileManager \
+    Apollo \
+    SoundRecorder
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/ChronoKernelSettings.apk:/system/app/ChronoKernelSettings.apk \
 
 # U8500 Common init
 PRODUCT_COPY_FILES += \
