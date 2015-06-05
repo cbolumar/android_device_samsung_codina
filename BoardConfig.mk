@@ -1,21 +1,13 @@
 -include device/samsung/u8500-common/BoardCommonConfig.mk
 
-TARGET_OTA_ASSERT_DEVICE := janice,i9070,GT-I9070
+TARGET_OTA_ASSERT_DEVICE := codina,i8160,GT-I8160
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_i9070_defconfig
+TARGET_KERNEL_CONFIG := codina_defconfig
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/janice/bluetooth
-
-# Vibrator
-BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/samsung/janice/vibrator/vibrator.c
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/codina/bluetooth
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/janice/rootdir/fstab.samsungjanice
+TARGET_RECOVERY_FSTAB := device/samsung/codina/rootdir/fstab.samsungcodina
 
-# Hardware tunables (device parts replacement)
-BOARD_HARDWARE_CLASS := device/samsung/janice/cmhw
-
-# Disable legacy sensors using because janice has gyro
-BOARD_USE_LEGACY_SENSORS_FUSION := false

@@ -1,7 +1,7 @@
 # Include common makefile
 $(call inherit-product, device/samsung/u8500-common/common.mk)
 
-LOCAL_PATH := device/samsung/janice
+LOCAL_PATH := device/samsung/codina
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -28,15 +28,10 @@ $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 # Init files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/device_tunables.rc:root/device_tunables.rc \
-    $(LOCAL_PATH)/rootdir/fstab.samsungjanice:root/fstab.samsungjanice \
-    $(LOCAL_PATH)/rootdir/init.samsungjanice.rc:root/init.samsungjanice.rc \
-    $(LOCAL_PATH)/rootdir/init.recovery.samsungjanice.rc:root/init.recovery.samsungjanice.rc \
-    $(LOCAL_PATH)/rootdir/ueventd.samsungjanice.rc:root/ueventd.samsungjanice.rc
-
-# Permissions
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml
+    $(LOCAL_PATH)/rootdir/fstab.samsungcodina:root/fstab.samsungcodina \
+    $(LOCAL_PATH)/rootdir/init.samsungcodina.rc:root/init.samsungcodina.rc \
+    $(LOCAL_PATH)/rootdir/init.recovery.samsungcodina.rc:root/init.recovery.samsungcodina.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.samsungcodina.rc:root/ueventd.samsungcodina.rc
 
 # Audio
 PRODUCT_COPY_FILES += \
