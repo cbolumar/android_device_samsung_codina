@@ -35,4 +35,4 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/adm.sqlite-u8500:system/etc/adm.sqlite-u8500
 
 # Use non-open-source parts if present
-$(call inherit-product-if-exists, vendor/samsung/janice/janice-vendor-blobs.mk)
+$(call inherit-product-if-exists, vendor/samsung/codina/codina-vendor-blobs.mk)
