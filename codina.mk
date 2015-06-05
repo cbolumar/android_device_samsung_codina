@@ -44,7 +44,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.bq.gpu_to_cpu_unsupported=1 \
     debug.sf.hw=1 \
     debug.hwui.render_dirty_regions=false
-
+ 
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/omxloaders:system/etc/omxloaders \
@@ -94,6 +94,9 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     libaudioutils \
     libtinyalsa
+PRODUCT_PROPERTY_OVERRIDES += \
+     media.aac_51_output_enabled=true
+
 
 # U8500 Hardware
 $(call inherit-product, hardware/u8500/u8500.mk)
@@ -187,6 +190,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=4m
 PRODUCT_TAGS += dalvik.gc.type-precise
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.dalvik.multithread=true
 
 # Use the non-open-source parts, if they're present
 include vendor/samsung/u8500-common/vendor-common.mk
