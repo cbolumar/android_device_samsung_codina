@@ -1,0 +1,85 @@
+From 1418d7fcd05d945fe5d0715ea185c0281e6f5999 Mon Sep 17 00:00:00 2001
+From: Shilin Victor <chrono.monochrome@gmail.com>
+Date: Fri, 5 Jun 2015 06:01:30 +0300
+Subject: [PATCH 4/4] Add arter97 optimizations
+
+Change-Id: I0dc8f7277ca9a5a709c1db69c80e925f635eda9b
+---
+ core/combo/TARGET_linux-arm.mk | 27 ++++++++++++++++++---------
+ core/combo/select.mk           |  4 ++--
+ 2 files changed, 20 insertions(+), 11 deletions(-)
+
+diff --git a/core/combo/TARGET_linux-arm.mk b/core/combo/TARGET_linux-arm.mk
+index c6b01b4..c553f08 100644
+--- a/core/combo/TARGET_linux-arm.mk
++++ b/core/combo/TARGET_linux-arm.mk
+@@ -91,11 +91,12 @@ endif
+ android_config_h := $(call select-android-config-h,linux-arm)
+ 
+ TARGET_GLOBAL_CFLAGS += \
+-			-msoft-float -fpic $(PIE_GLOBAL_CFLAGS) \
++			-mfloat-abi=softfp -fpic $(PIE_GLOBAL_CFLAGS) \
+ 			-ffunction-sections \
+ 			-fdata-sections \
+ 			-funwind-tables \
+ 			-fstack-protector \
++ 			-Wno-unused -Wno-unused-parameter -Wno-error=unused -Wno-error=unused-parameter \
+ 			-Wa,--noexecstack \
+ 			-Werror=format-security \
+ 			-D_FORTIFY_SOURCE=2 \
+@@ -104,6 +105,22 @@ TARGET_GLOBAL_CFLAGS += \
+ 			-include $(android_config_h) \
+ 			-I $(dir $(android_config_h))
+ 
++# More flags/options can be added here
++TARGET_GLOBAL_CFLAGS += \
++			-DNDEBUG \
++			-Wstrict-aliasing=2 \
++			-fgcse-after-reload \
++			-frerun-cse-after-loop \
++			-frename-registers
++
++# arter97
++TARGET_GLOBAL_CFLAGS += \
++			-w \
++			-O3 \
++			-fno-inline-functions \
++			-funroll-loops \
++			-mvectorize-with-neon-quad
++
+ # This warning causes dalvik not to build with gcc 4.6+ and -Werror.
+ # We cannot turn it off blindly since the option is not available
+ # in gcc-4.4.x.  We also want to disable sincos optimization globally
+@@ -136,14 +153,6 @@ TARGET_GLOBAL_CFLAGS += -mthumb-interwork
+ 
+ TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
+ 
+-# More flags/options can be added here
+-TARGET_RELEASE_CFLAGS := \
+-			-DNDEBUG \
+-			-g \
+-			-Wstrict-aliasing=2 \
+-			-fgcse-after-reload \
+-			-frerun-cse-after-loop \
+-			-frename-registers
+ 
+ libc_root := bionic/libc
+ libm_root := bionic/libm
+diff --git a/core/combo/select.mk b/core/combo/select.mk
+index d5f7379..a6b15d2 100644
+--- a/core/combo/select.mk
++++ b/core/combo/select.mk
+@@ -47,8 +47,8 @@ $(combo_target)HAVE_STRLCAT := 0
+ $(combo_target)HAVE_KERNEL_MODULES := 0
+ 
+ $(combo_target)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar
+-$(combo_target)RELEASE_CFLAGS := -O2 -g -fno-strict-aliasing
+-$(combo_target)GLOBAL_LDFLAGS :=
++$(combo_target)RELEASE_CFLAGS := -O3 -fno-strict-aliasing
++$(combo_target)GLOBAL_LDFLAGS := -Wl,-O1 -Wl,--as-needed -Wl,--relax -Wl,--sort-common -Wl,--gc-sections
+ $(combo_target)GLOBAL_ARFLAGS := crsP
+ 
+ $(combo_target)EXECUTABLE_SUFFIX :=
+-- 
+1.9.1
+

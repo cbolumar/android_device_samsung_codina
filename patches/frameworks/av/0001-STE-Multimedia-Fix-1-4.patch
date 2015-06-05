@@ -1,0 +1,47 @@
+From f306062a5794de82fa93af9efb0c8eaedc3c4625 Mon Sep 17 00:00:00 2001
+From: Robert Rozic <rooobertinhooo@gmail.com>
+Date: Sun, 2 Feb 2014 12:38:11 +0100
+Subject: [PATCH 1/2] STE Multimedia Fix [1/4]
+
+---
+ camera/CameraParameters.cpp       | 6 ++++++
+ include/camera/CameraParameters.h | 6 ++++++
+ 2 files changed, 12 insertions(+)
+
+diff --git a/camera/CameraParameters.cpp b/camera/CameraParameters.cpp
+index 6d59ead..4be73ee 100644
+--- a/camera/CameraParameters.cpp
++++ b/camera/CameraParameters.cpp
+@@ -597,6 +597,12 @@ void CameraParameters::setOrientation(int orientation)
+ const char CameraParameters::LIGHTFX_LOWLIGHT[] = "low-light";
+ const char CameraParameters::LIGHTFX_HDR[] = "high-dynamic-range";
+ 
++#ifdef STE_HARDWARE
++// keys for record stride and sliceheight
++const char CameraParameters::KEY_RECORD_STRIDE[] = "record-stride";
++const char CameraParameters::KEY_RECORD_SLICE_HEIGHT[] = "record-slice-height";
++#endif
++
+ #ifdef CAMERA_PARAMETERS_EXTRA_C
+ CAMERA_PARAMETERS_EXTRA_C
+ #endif
+diff --git a/include/camera/CameraParameters.h b/include/camera/CameraParameters.h
+index 5e908cd..06b9c77 100644
+--- a/include/camera/CameraParameters.h
++++ b/include/camera/CameraParameters.h
+@@ -1150,6 +1150,12 @@ public:
+     void getSupportedHfrSizes(Vector<Size> &sizes) const;
+ #endif
+ 
++#ifdef STE_HARDWARE
++    // keys for record stride and slice height
++    static const char KEY_RECORD_STRIDE[];
++    static const char KEY_RECORD_SLICE_HEIGHT[];
++#endif
++
+ #ifdef CAMERA_PARAMETERS_EXTRA_H
+ CAMERA_PARAMETERS_EXTRA_H
+ #endif
+-- 
+1.9.1
+

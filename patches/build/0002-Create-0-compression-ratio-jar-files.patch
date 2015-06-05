@@ -1,9 +1,9 @@
-From 6293034787ac99ab3c3e11e7c2dc31b16c71481a Mon Sep 17 00:00:00 2001
+From 80ab05da9b3929019a56838a7b0f168d2fee581a Mon Sep 17 00:00:00 2001
 From: Shilin Victor <chrono.monochrome@gmail.com>
-Date: Fri, 5 Jun 2015 05:11:05 +0300
-Subject: [PATCH] Create-0-compression-ratio-jar-files
+Date: Fri, 5 Jun 2015 05:46:04 +0300
+Subject: [PATCH 2/4] Create-0-compression-ratio-jar-files
 
-Change-Id: I55f15cf8ad5ddbca913ef299b8a165575dfdf0eb
+Change-Id: I38888df6e3621d8d0a62ddf647c34734d668c75e
 ---
  core/definitions.mk | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
