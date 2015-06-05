@@ -245,3 +245,5 @@ PRODUCT_COPY_FILES += \
 # WIFI fix
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/strace/strace:system/xbin/strace
+
+TARGET_GCC_VERSION=4.8-linaro
