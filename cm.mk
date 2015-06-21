@@ -2,7 +2,7 @@
 PRODUCT_RELEASE_NAME := GT-I8160
 
 # Specify phone tech before including full_phone
-$(call inherit-product, vendor/slim/config/gsm.mk)
+
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 800
